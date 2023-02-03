@@ -22,7 +22,7 @@ namespace Game
 
         private void Start()
         {
-            StartCoroutine(ColliderCheck());
+            //StartCoroutine(ColliderCheck());
         }
         
         private IEnumerator ColliderCheck()
@@ -45,6 +45,14 @@ namespace Game
             Debug.Log(isIntersecting
                 ? $"Box collider is intersecting with another collider. {selfCollider.rotation.eulerAngles}"
                 : "NO.");
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & checkLayers) != 0)
+            {
+                Debug.Log($"Trigger collision with: {other.name}");    
+            }
         }
 
         private void OnDrawGizmos()
