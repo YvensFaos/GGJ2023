@@ -21,7 +21,11 @@ namespace Game
         public void Initialize(SeedController seedController)
         {
             seed = seedController;
-            rootPoints.ForEach(rootPoint => rootPoint.Seed = seed);
+            rootPoints.ForEach(rootPoint =>
+            {
+                rootPoint.Seed = seed;
+                seed.AddToGroupComposer(gameObject);
+            });
         }
 
         public void RootContactWithOther()

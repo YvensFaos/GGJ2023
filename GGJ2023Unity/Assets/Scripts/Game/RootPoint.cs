@@ -26,9 +26,11 @@ namespace Game
 
         public void GrowRoot()
         {
+            //First checks if there is already a root in here
+            if (spawnRoot != null) return;
+            //Secondly, checks if is there enough root power
             if (!Seed.TryToUseRootPower()) return;
             
-            if (spawnRoot != null) return;
             var newRoot = rootsDatabase.GetRoot();
             var selfTransform = transform;
             spawnRoot = Instantiate(newRoot, selfTransform.position, selfTransform.rotation);
@@ -49,6 +51,7 @@ namespace Game
                 spawnRoot.RootContactWithOther();
                 Destroy(spawnRoot.gameObject);
             }
+            seed.RemoveFromGroupComposer(gameObject);
             Destroy(gameObject);
         }
     }
