@@ -601,6 +601,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7094195340146988152}
     m_Modifications:
+    - target: {fileID: 84645879872012220, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 888503302888452811, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1
@@ -661,6 +665,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrowthPoints
       objectReference: {fileID: 0}
+    - target: {fileID: 7350354067302937143, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350354067302937143, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7350354067302937143, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: m_Color.a
+      value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951761828976587623, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: seed
+      value: 
+      objectReference: {fileID: 3062610556180973200}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
 --- !u!114 &5689922585796821494 stripped

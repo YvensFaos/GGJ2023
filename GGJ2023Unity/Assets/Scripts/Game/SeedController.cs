@@ -21,5 +21,14 @@ namespace Game
 
             rootSeedCanvas.Initialize(availableRootPower);
         }
+
+        public bool TryToUseRootPower()
+        {
+            if (availableRootPower <= 0) return false;
+            availableRootPower--;
+            rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
+            return true;
+
+        }
     }
 }

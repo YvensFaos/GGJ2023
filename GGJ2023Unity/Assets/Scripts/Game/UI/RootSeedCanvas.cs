@@ -13,7 +13,7 @@ namespace Game.UI
             ResetRootPanelsToMatchRootPower(initialRootPower);
         }
 
-        private void ResetRootPanelsToMatchRootPower(int rootPower)
+        public void ResetRootPanelsToMatchRootPower(int rootPower)
         {
             rootPanels.ForEach(rootPanel => rootPanel.ToggleRootPowerGo(false));
             rootPanels.Sort();
