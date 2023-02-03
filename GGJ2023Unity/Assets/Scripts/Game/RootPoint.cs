@@ -51,7 +51,6 @@ namespace Game
                 spawnRoot.RootContactWithOther();
                 Destroy(spawnRoot.gameObject);
             }
-            seed.RemoveFromGroupComposer(gameObject);
             Destroy(gameObject);
         }
     }

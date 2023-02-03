@@ -24,7 +24,6 @@ namespace Game
             rootPoints.ForEach(rootPoint =>
             {
                 rootPoint.Seed = seed;
-                seed.AddToGroupComposer(gameObject);
             });
         }
 
