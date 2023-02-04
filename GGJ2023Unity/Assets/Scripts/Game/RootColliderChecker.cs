@@ -21,8 +21,9 @@ namespace Game
             }
             if ((layer & rootPowerLayers) != 0)
             {
+                if (!other.TryGetComponent<RootPower>(out var rootPower)) return;
+                root.CollectRootPower(rootPower);
                 Destroy(other.gameObject);
-                root.CollectRootPower();
             }
         }
     }

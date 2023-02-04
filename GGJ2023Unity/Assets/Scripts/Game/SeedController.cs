@@ -1,4 +1,3 @@
-using Cinemachine;
 using Game.UI;
 using UnityEngine;
 
@@ -31,9 +30,9 @@ namespace Game
             return true;
         }
 
-        public void CollectRootPower()
+        public void CollectRootPower(RootPower rootPower)
         {
-            availableRootPower = Mathf.Clamp(++availableRootPower, 0, numberRootSeedCanvas);
+            availableRootPower = Mathf.Clamp(availableRootPower + rootPower.Power, 0, numberRootSeedCanvas);
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
         }
     }
