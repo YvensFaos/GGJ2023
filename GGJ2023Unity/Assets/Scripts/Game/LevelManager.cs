@@ -1,6 +1,7 @@
 using Game.UI;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Game
 {
@@ -16,6 +17,8 @@ namespace Game
         private UnityEvent finishLevelEvents;
         [SerializeField] 
         private GameObject nextLevelCanvas;
+        [SerializeField] 
+        private SceneLoader sceneLoader;
 
         private int _completedSeeds;
         
@@ -36,6 +39,18 @@ namespace Game
             if (nextLevelCanvas == null) return;
             nextLevelCanvas.SetActive(true);
             GameManager.Instance.UnlockLevel(level);
+        }
+
+        public void GoToNextLevel()
+        {
+            if (level.LastLevel)
+            {
+                sceneLoader.GoToScene("MainMenu");
+            }
+            else
+            {
+                sceneLoader.GoToLevel(level.NextLevel);
+            }
         }
     }
 }

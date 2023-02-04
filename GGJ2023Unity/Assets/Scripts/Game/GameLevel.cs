@@ -14,10 +14,13 @@ namespace Game
         private string sceneName;
         [SerializeField] 
         private bool lastLevel;
+        [SerializeField] 
+        private GameLevel nextLevel;
         
         public int LevelNumber => levelNumber;
         public string LevelName => levelName;
         public string SceneName => sceneName;
         public bool LastLevel => lastLevel;
+        public GameLevel NextLevel => nextLevel;
     }
 }

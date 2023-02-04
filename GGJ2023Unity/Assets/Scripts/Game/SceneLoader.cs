@@ -10,6 +10,11 @@ namespace Game
             SceneManager.LoadScene(sceneName);
         }
 
+        public void GoToLevel(GameLevel level)
+        {
+            GoToScene(level.SceneName);
+        }
+        
         public void ResetScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
