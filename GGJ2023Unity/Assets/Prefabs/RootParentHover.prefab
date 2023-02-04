@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 1037495286593755087}
   - component: {fileID: 1376945942819172699}
   - component: {fileID: 8364708414764150997}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1001 &2147572364961996865
 PrefabInstance:

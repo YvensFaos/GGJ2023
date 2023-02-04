@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5211206ec7b44b5f8e7c21e744a6940f, type: 3}
-  m_Name: Roots Database
+  m_Name: Seed Roots Database 1
   m_EditorClassIdentifier: 
   possibleRoots: {fileID: 3658039946778477099, guid: b92076485195546f697b5e35d27f38d8, type: 3}
   hoverRoot: {fileID: 1037495285845078999, guid: 3ff913ff1c5aa467187c3de184db9987, type: 3}

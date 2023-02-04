@@ -1,3 +1,6 @@
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,6 +25,7 @@ namespace Game
 
         private GameObject _hoverRoot;
         private bool _markedForDeath;
+        private TweenerCore<Vector3, Vector3, VectorOptions> _scaleTween;
 
         public SeedController Seed
         {
@@ -46,6 +50,10 @@ namespace Game
             };
             pointerExitEntry.callback.AddListener((data) => { OnPointerExit((PointerEventData)data); });
             eventTrigger.triggers.Add(pointerExitEntry);
+
+            Debug.Log("QQQ");
+            var selfTransform = transform;
+            _hoverRoot = Instantiate(rootsDatabase.HoverRoot, selfTransform.position, selfTransform.rotation);
         }
         
         public void GrowRoot()
@@ -63,6 +71,9 @@ namespace Game
             {
                 spawnRoot.RootParent = rootParent;
             }
+
+            spawnRoot.transform.localScale = Vector3.zero;
+            spawnRoot.transform.DOScale(new Vector3(1, 1, 1), 0.2f);
             
             Seed.Grow();
         }
@@ -77,25 +88,34 @@ namespace Game
                 spawnRoot.RootContactWithOther();
                 Destroy(spawnRoot.gameObject);
             }
+            if (_hoverRoot != null)
+            {
+                _scaleTween?.Kill();
+                Destroy(_hoverRoot);
+            }
             Destroy(gameObject);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (_markedForDeath) return;
+            if (spawnRoot != null) return;
             if (_hoverRoot == null)
             {
                 var selfTransform = transform;
                 _hoverRoot = Instantiate(rootsDatabase.HoverRoot, selfTransform.position, selfTransform.rotation);
             }
             _hoverRoot.SetActive(true);
+            _hoverRoot.transform.localScale = Vector3.zero;
+            _scaleTween?.Kill();
+            _scaleTween = _hoverRoot.transform.DOScale(new Vector3(1, 1, 1), 0.2f);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (_hoverRoot != null)
-            {
-                _hoverRoot.SetActive(false);
-            }
+            if (_hoverRoot == null) return;
+            _hoverRoot.SetActive(false);
+            _scaleTween?.Kill();
         }
     }
 }
