@@ -12,12 +12,12 @@ namespace Utils
         {
             if (_instance != null)
             {
-                Debug.LogError($"An instance of this singleton {name} already exists. Destroying this.");
+                Debug.LogWarning($"An instance of this singleton {name} already exists. Destroying this.");
                 Destroy(gameObject);
                 return;
             }
             _instance = gameObject.GetComponent<T>();
-            Debug.LogWarning($"Initiate Singleton for {name}.");
+            Debug.Log($"Initiate Singleton for {name}.");
         }
     }
 }
