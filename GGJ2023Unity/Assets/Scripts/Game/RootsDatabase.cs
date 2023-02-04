@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Utils;
 
 namespace Game
 {
@@ -8,11 +6,19 @@ namespace Game
     public class RootsDatabase : ScriptableObject
     {
         [SerializeField]
-        private List<RootController> possibleRoots;
+        private RootController possibleRoots;
+        
+        [SerializeField]
+        private GameObject hoverRoot;
+
+        public GameObject HoverRoot
+        {
+            get => hoverRoot;
+        }
 
         public RootController GetRoot()
         {
-            return RandomHelper<RootController>.GetRandomFromList(possibleRoots);
+            return possibleRoots;
         }
     }
 }

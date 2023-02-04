@@ -49,6 +49,7 @@ MonoBehaviour:
   rootParent: {fileID: 0}
   spawnRoot: {fileID: 0}
   rootsDatabase: {fileID: 11400000, guid: 7c0342fb0f48b49f0ae4b4b228941732, type: 2}
+  rootPointButton: {fileID: 5746126848857600467}
 --- !u!1 &6872831773941649797
 GameObject:
   m_ObjectHideFlags: 0
