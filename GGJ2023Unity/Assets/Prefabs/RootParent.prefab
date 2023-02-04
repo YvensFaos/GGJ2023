@@ -583,6 +583,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5746126848857600467, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5747016186715134949, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
