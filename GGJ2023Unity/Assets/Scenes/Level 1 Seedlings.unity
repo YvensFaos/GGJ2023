@@ -521,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9215988768081677041, guid: a6833045533c24c73931a9e2a3a22111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.58
+      value: -3.699
       objectReference: {fileID: 0}
     - target: {fileID: 9215988768081677041, guid: a6833045533c24c73931a9e2a3a22111, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1055,6 +1055,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5078876142756559569, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.62082773
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078876142756559569, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.62082773
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078876142756559569, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.33848625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078876142756559569, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.33848625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078876142756559569, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 32.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5092809379095036070, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
       propertyPath: m_Color.a
       value: 0.050980393
@@ -1105,7 +1125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7094195340146988152, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.87
+      value: -0.766
       objectReference: {fileID: 0}
     - target: {fileID: 7094195340146988152, guid: 0b655161e246845daafc917bdeba60a6, type: 3}
       propertyPath: m_LocalPosition.z
