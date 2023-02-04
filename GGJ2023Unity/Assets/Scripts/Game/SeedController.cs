@@ -22,6 +22,11 @@ namespace Game
         [SerializeField] private float maximalSize;
         [SerializeField] private int steps;
 
+        [Header("Audio")] 
+        [SerializeField] private AudioSource seedAudioSource;
+        [SerializeField] private AudioClip regulaGrowthSound;
+        [SerializeField] private AudioClip fullyGrownSound;
+
         private float _growthStep;
         private Vector3 _growthVector;
         private TweenerCore<Vector3, Vector3, VectorOptions> _scaleTween;
@@ -52,15 +57,14 @@ namespace Game
                 var scale = treePlacement.transform.localScale;
                 if (scale.x + _growthStep >= maximalSize)
                 {
-                    if (!_fullyGrown)
-                    {
-                        _fullyGrown = true;
-                        // ??
-                    }
+                    if (_fullyGrown) return;
+                    _fullyGrown = true;
+                    PlaySeedSound(fullyGrownSound);
                 }
                 else
                 {
-                    _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);   
+                    _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
+                    PlaySeedSound(regulaGrowthSound);
                 }
             }
             
@@ -93,6 +97,14 @@ namespace Game
         {
             availableRootPower = Mathf.Clamp(availableRootPower + rootPower.Power, 0, numberRootSeedCanvas);
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
+        }
+
+        private void PlaySeedSound(AudioClip soundClip)
+        {
+            if (seedAudioSource != null)
+            {
+                seedAudioSource.PlayOneShot(soundClip);
+            }
         }
     }
 }
