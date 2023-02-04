@@ -29,7 +29,12 @@ namespace Game
             availableRootPower--;
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
             return true;
+        }
 
+        public void CollectRootPower()
+        {
+            availableRootPower = Mathf.Clamp(++availableRootPower, 0, numberRootSeedCanvas);
+            rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
         }
     }
 }

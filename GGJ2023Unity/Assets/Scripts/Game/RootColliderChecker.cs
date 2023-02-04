@@ -8,13 +8,21 @@ namespace Game
         [SerializeField] 
         private RootController root;
         [SerializeField] 
-        private LayerMask checkLayers;
+        private LayerMask damageLayers;
+        [SerializeField] 
+        private LayerMask rootPowerLayers;
 
         private void OnTriggerStay(Collider other)
         {
-            if (((1 << other.gameObject.layer) & checkLayers) != 0)
+            var layer = (1 << other.gameObject.layer);
+            if ((layer & damageLayers) != 0)
             {
                   root.RootContactWithOther();
+            }
+            if ((layer & rootPowerLayers) != 0)
+            {
+                Destroy(other.gameObject);
+                root.CollectRootPower();
             }
         }
     }

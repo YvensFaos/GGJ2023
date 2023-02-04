@@ -39,5 +39,10 @@ namespace Game
             }
             rootPoints.ForEach(rootPoint => rootPoint.DestroyRoot());
         }
+
+        public void CollectRootPower()
+        {
+            seed.CollectRootPower();
+        }
     }
 }
