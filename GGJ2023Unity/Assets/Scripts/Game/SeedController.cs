@@ -1,3 +1,7 @@
+using System.Security;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Game.UI;
 using UnityEngine;
 
@@ -13,6 +17,17 @@ namespace Game
 
         [Header("References")]
         [SerializeField] private RootSeedCanvas rootSeedCanvas;
+        [SerializeField] private GameObject treePlacement;
+        [SerializeField] private float minimalSize;
+        [SerializeField] private float maximalSize;
+        [SerializeField] private int steps;
+
+        private float _growthStep;
+        private Vector3 _growthVector;
+        private TweenerCore<Vector3, Vector3, VectorOptions> _scaleTween;
+        private bool _fullyGrown;
+        
+        public float GrowthStep => _growthStep;
 
         private void Awake()
         {
@@ -20,6 +35,50 @@ namespace Game
             availableRootPower = Mathf.Clamp(availableRootPower, 0, numberRootSeedCanvas);
 
             rootSeedCanvas.Initialize(availableRootPower);
+
+            var min = Mathf.Min(minimalSize, maximalSize);
+            var max = Mathf.Max(minimalSize, maximalSize);
+            minimalSize = min;
+            maximalSize = max;
+
+            _growthStep = (max - min) / (float)steps;
+            _growthVector = new Vector3(_growthStep, _growthStep, _growthStep);
+        }
+
+        public void Grow()
+        {
+            void ScaleTweenCall()
+            {
+                var scale = treePlacement.transform.localScale;
+                if (scale.x + _growthStep >= maximalSize)
+                {
+                    if (!_fullyGrown)
+                    {
+                        _fullyGrown = true;
+                        // ??
+                    }
+                }
+                else
+                {
+                    _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);   
+                }
+            }
+            
+            if (_scaleTween != null)
+            {
+                if (_scaleTween.active)
+                {
+                    _scaleTween.OnComplete(ScaleTweenCall);
+                }
+                else
+                {
+                    ScaleTweenCall();
+                }
+            }
+            else
+            {
+                ScaleTweenCall();    
+            }
         }
 
         public bool TryToUseRootPower()

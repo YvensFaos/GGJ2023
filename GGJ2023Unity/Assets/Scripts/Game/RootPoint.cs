@@ -39,6 +39,8 @@ namespace Game
             {
                 spawnRoot.RootParent = rootParent;
             }
+            
+            Seed.Grow();
         }
 
         public void DestroyRoot()
