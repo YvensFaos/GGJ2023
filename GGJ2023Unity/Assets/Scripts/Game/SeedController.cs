@@ -46,7 +46,7 @@ namespace Game
             minimalSize = min;
             maximalSize = max;
 
-            _growthStep = (max - min) / (float)steps;
+            _growthStep = (max - min) / steps;
             _growthVector = new Vector3(_growthStep, _growthStep, _growthStep);
         }
 
@@ -57,7 +57,7 @@ namespace Game
             seedObject.transform.localScale = Vector3.zero;
             seedObject.transform.DOScale(scale, 0.3f).OnComplete(() =>
             {
-                seedObject.transform.Rotate(new Vector3(1,0,0), Random.Range(0.0f, 360.0f));
+                seedObject.transform.rotation = Quaternion.Euler(Random.Range(0.0f, 360.0f), 90.0f, 270.0f);
             });
         }
         
@@ -97,6 +97,8 @@ namespace Game
 
         private void FullyGrown()
         {
+            var scale = treePlacement.transform.localScale;
+            _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
             _fullyGrown = true;
             PlaySeedSound(fullyGrownSound);
 
