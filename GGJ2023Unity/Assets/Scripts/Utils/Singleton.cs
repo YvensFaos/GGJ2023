@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace Utils
 {
-    public class Singleton : MonoBehaviour
+    public class Singleton<T> : MonoBehaviour
     {
-        private Singleton _instance;
+        private static T _instance;
 
-        public Singleton Instance => _instance;
+        public static T Instance => _instance;
 
         protected virtual void Awake()
         {
-            if (_instance == null)
+            if (_instance != null)
             {
                 Debug.LogError($"An instance of this singleton {name} already exists. Destroying this.");
                 Destroy(gameObject);
                 return;
             }
-            _instance = this;
+            _instance = gameObject.GetComponent<T>();
             Debug.LogWarning($"Initiate Singleton for {name}.");
         }
     }

@@ -65,8 +65,7 @@ namespace Game
                 if (scale.x + _growthStep >= maximalSize)
                 {
                     if (_fullyGrown) return;
-                    _fullyGrown = true;
-                    PlaySeedSound(fullyGrownSound);
+                    FullyGrown();
                 }
                 else
                 {
@@ -89,6 +88,18 @@ namespace Game
             else
             {
                 ScaleTweenCall();    
+            }
+        }
+
+        private void FullyGrown()
+        {
+            _fullyGrown = true;
+            PlaySeedSound(fullyGrownSound);
+
+            var levelManager = FindObjectOfType<LevelManager>();
+            if (levelManager != null)
+            {
+                levelManager.NotifySeedGrown();
             }
         }
 

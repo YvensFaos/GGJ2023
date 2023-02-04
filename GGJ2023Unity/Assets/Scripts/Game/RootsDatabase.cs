@@ -11,10 +11,7 @@ namespace Game
         [SerializeField]
         private GameObject hoverRoot;
 
-        public GameObject HoverRoot
-        {
-            get => hoverRoot;
-        }
+        public GameObject HoverRoot => hoverRoot;
 
         public RootController GetRoot()
         {
