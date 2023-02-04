@@ -57,7 +57,7 @@ namespace Game
             seedObject.transform.localScale = Vector3.zero;
             seedObject.transform.DOScale(scale, 0.3f).OnComplete(() =>
             {
-                seedObject.transform.Rotate(Vector3.forward, Random.Range(0.0f, 360.0f));
+                seedObject.transform.Rotate(new Vector3(1,0,0), Random.Range(0.0f, 360.0f));
             });
         }
         
