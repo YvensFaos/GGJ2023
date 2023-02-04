@@ -3,7 +3,6 @@ using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Game
 {
@@ -20,8 +19,6 @@ namespace Game
         [Header("References")]
         [SerializeField]
         private RootsDatabase rootsDatabase;
-        [SerializeField] 
-        private Button rootPointButton;
 
         private GameObject _hoverRoot;
         private bool _markedForDeath;
@@ -53,6 +50,10 @@ namespace Game
             spawnRoot.transform.DOScale(new Vector3(1, 1, 1), 0.2f);
             
             Seed.Grow();
+            if (_hoverRoot != null)
+            {
+                Destroy(_hoverRoot.gameObject);
+            }
         }
 
         public void DestroyRoot()
@@ -84,7 +85,7 @@ namespace Game
             }
             _hoverRoot.SetActive(true);
             _hoverRoot.transform.localScale = Vector3.zero;
-            // _scaleTween?.Kill();
+            _scaleTween?.Kill();
             _scaleTween = _hoverRoot.transform.DOScale(new Vector3(1, 1, 1), 0.2f);
         }
 
@@ -92,7 +93,7 @@ namespace Game
         {
             if (_hoverRoot == null) return;
             _hoverRoot.SetActive(false);
-            // _scaleTween?.Kill();
+            _scaleTween?.Kill();
         }
     }
 }
