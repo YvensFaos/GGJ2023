@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6093722199277915498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.0172038, y: -5.661695, z: 13.949174}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -437,14 +437,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6799765417834943337}
-  m_LocalRotation: {x: -0.2262602, y: 0.7735314, z: 0.42868719, w: 0.4082682}
+  m_LocalRotation: {x: 0.6905705, y: 0.152028, z: 0.15202801, w: 0.6905704}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.063083, y: 0.063083, z: 0.063083}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7094195340146988152}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -57.99, y: 124.35, z: 0}
+  m_LocalEulerAnglesHint: {x: 65.169, y: 90, z: 90}
 --- !u!33 &7615083701916824256
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6799765417834943337}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5992607754533838534
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 7350354067302937143, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: be96034e6335c4bfb80492ce8de54e6e, type: 3}
     - target: {fileID: 7350354067302937143, guid: 57e9479ab368f4c31847d06cc80e3fb2, type: 3}
       propertyPath: m_Color.a
       value: 0.05882353

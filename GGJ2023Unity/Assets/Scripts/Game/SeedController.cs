@@ -53,8 +53,9 @@ namespace Game
         private void Start()
         {
             if (seedObject == null) return;
+            var scale = seedObject.transform.localScale;
             seedObject.transform.localScale = Vector3.zero;
-            seedObject.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+            seedObject.transform.DOScale(scale, 0.3f);
         }
         
         public void Grow()
