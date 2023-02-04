@@ -2,6 +2,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using Game.UI;
+using TMPro;
 using UnityEngine;
 
 namespace Game
@@ -27,12 +28,17 @@ namespace Game
         [SerializeField] private AudioClip regulaGrowthSound;
         [SerializeField] private AudioClip fullyGrownSound;
 
-        private float _growthStep;
+        [Header("UI")] 
+        [SerializeField] private TextMeshProUGUI counterRootPower;
+        [SerializeField] private TextMeshProUGUI counterGrowth;
+
         private Vector3 _growthVector;
         private TweenerCore<Vector3, Vector3, VectorOptions> _scaleTween;
         private bool _fullyGrown;
+        private int _rootPowerCollected;
+        private int _growthMade;
         
-        public float GrowthStep => _growthStep;
+        public float GrowthStep { get; private set; }
 
         private void Awake()
         {
@@ -46,8 +52,8 @@ namespace Game
             minimalSize = min;
             maximalSize = max;
 
-            _growthStep = (max - min) / steps;
-            _growthVector = new Vector3(_growthStep, _growthStep, _growthStep);
+            GrowthStep = (max - min) / steps;
+            _growthVector = new Vector3(GrowthStep, GrowthStep, GrowthStep);
         }
 
         private void Start()
@@ -59,21 +65,31 @@ namespace Game
             {
                 seedObject.transform.rotation = Quaternion.Euler(Random.Range(0.0f, 360.0f), 90.0f, 270.0f);
             });
+            
+            UpdateGrowthCounter();
+            counterRootPower.text = $"{_rootPowerCollected}";
         }
-        
+
+        private void UpdateGrowthCounter()
+        {
+            counterGrowth.text = $"{_growthMade}/{steps}";
+        }
+
         public void Grow()
         {
             void ScaleTweenCall()
             {
-                var scale = treePlacement.transform.localScale;
-                if (scale.x + _growthStep >= maximalSize)
+                if (_growthMade + 1 >= steps)
                 {
                     if (_fullyGrown) return;
+                    _growthMade++;
                     FullyGrown();
                 }
                 else
                 {
+                    var scale = treePlacement.transform.localScale;
                     _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
+                    _growthMade++;
                     PlaySeedSound(regulaGrowthSound);
                 }
             }
@@ -93,6 +109,7 @@ namespace Game
             {
                 ScaleTweenCall();    
             }
+            UpdateGrowthCounter();
         }
 
         private void FullyGrown()
@@ -121,6 +138,8 @@ namespace Game
         {
             availableRootPower = Mathf.Clamp(availableRootPower + rootPower.Power, 0, numberRootSeedCanvas);
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
+            _rootPowerCollected++;
+            counterRootPower.text = $"{_rootPowerCollected}";
         }
 
         private void PlaySeedSound(AudioClip soundClip)

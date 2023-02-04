@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9bd0235a7309c42e59ede8154bd650c9
   - enabled: 1
-    path: Assets/Scenes/Level 1 Seedlings.unity
+    path: Assets/Scenes/Level 1 Seedling.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Long Stretch.unity
+    guid: fc1089f31fb4e42c6b0642a57563b6a4
   m_configObjects: {}

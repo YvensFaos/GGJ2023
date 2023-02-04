@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seedling
   m_EditorClassIdentifier: 
   levelNumber: 1
-  levelName: SEEDLING
-  sceneName: Level 1 Seedlings
+  levelName: Seedling
+  sceneName: Level 1 Seedling
   lastLevel: 0
   nextLevel: {fileID: 11400000, guid: 62eccf34cf08b4cb4b5ff2697d7ff077, type: 2}

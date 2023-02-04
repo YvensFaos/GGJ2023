@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Long Stretch
   m_EditorClassIdentifier: 
   levelNumber: 2
-  levelName: LONG STRETCH
+  levelName: Long Stretch
   sceneName: Level 2 Long Stretch
   lastLevel: 1
   nextLevel: {fileID: 0}
