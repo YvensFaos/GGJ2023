@@ -576,7 +576,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Seedling
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 250c31fed571b4c6986036d19964c69e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1c9c10629a91249b7a9dc68d1190435d, type: 2}
   m_sharedMaterial: {fileID: -6016480848831752307, guid: 62b56b46cb29a436487790d24a4db60c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
