@@ -33,29 +33,6 @@ namespace Game
             set => seed = value;
         }
 
-        private void Start()
-        {
-            var eventTrigger = rootPointButton.GetComponent<EventTrigger>();
-            if (eventTrigger == null) return;
-            var pointerEnterEntry = new EventTrigger.Entry
-            {
-                eventID = EventTriggerType.PointerEnter
-            };
-            pointerEnterEntry.callback.AddListener((data) => { OnPointerEnter((PointerEventData)data); });
-            eventTrigger.triggers.Add(pointerEnterEntry);
-
-            var pointerExitEntry = new EventTrigger.Entry
-            {
-                eventID = EventTriggerType.PointerExit
-            };
-            pointerExitEntry.callback.AddListener((data) => { OnPointerExit((PointerEventData)data); });
-            eventTrigger.triggers.Add(pointerExitEntry);
-
-            Debug.Log("QQQ");
-            var selfTransform = transform;
-            _hoverRoot = Instantiate(rootsDatabase.HoverRoot, selfTransform.position, selfTransform.rotation);
-        }
-        
         public void GrowRoot()
         {
             //First checks if there is already a root in here
@@ -107,7 +84,7 @@ namespace Game
             }
             _hoverRoot.SetActive(true);
             _hoverRoot.transform.localScale = Vector3.zero;
-            _scaleTween?.Kill();
+            // _scaleTween?.Kill();
             _scaleTween = _hoverRoot.transform.DOScale(new Vector3(1, 1, 1), 0.2f);
         }
 
@@ -115,7 +92,7 @@ namespace Game
         {
             if (_hoverRoot == null) return;
             _hoverRoot.SetActive(false);
-            _scaleTween?.Kill();
+            // _scaleTween?.Kill();
         }
     }
 }

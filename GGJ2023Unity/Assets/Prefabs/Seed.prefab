@@ -548,6 +548,7 @@ MonoBehaviour:
   numberRootSeedCanvas: 0
   availableRootPower: 1
   rootSeedCanvas: {fileID: 8589808733439991670}
+  seedObject: {fileID: 6799765417834943337}
   treePlacement: {fileID: 3994965916840546953}
   minimalSize: 0
   maximalSize: 1

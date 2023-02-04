@@ -16,6 +16,7 @@ namespace Game
 
         [Header("References")]
         [SerializeField] private RootSeedCanvas rootSeedCanvas;
+        [SerializeField] private GameObject seedObject;
         [SerializeField] private GameObject treePlacement;
         [SerializeField] private float minimalSize;
         [SerializeField] private float maximalSize;
@@ -49,6 +50,13 @@ namespace Game
             _growthVector = new Vector3(_growthStep, _growthStep, _growthStep);
         }
 
+        private void Start()
+        {
+            if (seedObject == null) return;
+            seedObject.transform.localScale = Vector3.zero;
+            seedObject.transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        }
+        
         public void Grow()
         {
             void ScaleTweenCall()
