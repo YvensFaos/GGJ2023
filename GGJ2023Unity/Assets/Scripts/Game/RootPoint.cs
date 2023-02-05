@@ -90,6 +90,8 @@ namespace Game
             if (seed.IsFullyGrown) return;
             if (_markedForDeath) return;
             if (spawnRoot != null) return;
+            if (!seed.HasRootPower()) return;
+            
             if (_hoverRoot == null)
             {
                 var selfTransform = transform;
