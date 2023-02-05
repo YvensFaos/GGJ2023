@@ -18,6 +18,7 @@ namespace Utils
             }
             _instance = gameObject.GetComponent<T>();
             Debug.Log($"Initiate Singleton for {name}.");
+            DontDestroyOnLoad(this);
         }
     }
 }
