@@ -188,7 +188,7 @@ MonoBehaviour:
   root: {fileID: 3658039946778477099}
   damageLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   rootPowerLayers:
     serializedVersion: 2
     m_Bits: 256

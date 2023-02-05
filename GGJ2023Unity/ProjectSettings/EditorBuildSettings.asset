@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 3 Grass Patch.unity
     guid: 1e22ca02bc8cb4372b8a965348239ff0
+  - enabled: 1
+    path: Assets/Scenes/Level 4 Gravel.unity
+    guid: faa069926b15d4dd8914f0e53903f976
   m_configObjects: {}
