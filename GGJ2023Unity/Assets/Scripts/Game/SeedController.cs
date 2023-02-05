@@ -37,6 +37,7 @@ namespace Game
         private bool _fullyGrown;
         private int _rootPowerCollected;
         private int _growthMade;
+        private Tweener _everShaker;
         
         public float GrowthStep { get; private set; }
         public int RootPowerCollected => _rootPowerCollected;
@@ -108,7 +109,8 @@ namespace Game
         {
             _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f).OnComplete(() =>
             {
-                treePlacement.transform.DOShakeScale(1.5f, 0.1f, 1, 5).SetLoops(-1);
+                _everShaker?.Kill();
+                _everShaker = treePlacement.transform.DOShakeScale(1.5f, 0.1f, 1, 5).SetLoops(-1);
                 
                 _fullyGrown = true;
                 PlaySeedSound(fullyGrownSound);
@@ -161,6 +163,8 @@ namespace Game
                     _scaleTween.Kill();
                 }
             }
+            _everShaker?.Kill();
+            
             _growthMade = Mathf.Clamp(GrowthMade - 1, 0, steps);
             _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f);
             UpdateGrowthCounter();
