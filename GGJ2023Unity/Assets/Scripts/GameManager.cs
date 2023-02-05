@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game;
 using Newtonsoft.Json;
@@ -28,29 +29,32 @@ public class GameManager : Singleton<GameManager>
 
     public void UnlockLevel(GameLevel levelFinished, int rootPower, int growth)
     {
-        FindAndRemoveOldLevelEntry(levelFinished);
-        LevelRecords.Add(new LevelRecord()
-        {
-            levelName = levelFinished.LevelName,
-            maxGrowth = growth,
-            maxRootPowerCollected = rootPower, 
-            unlocked = true
-        });
+        CheckAndUpdateLevelEntry(levelFinished, rootPower, growth);
 
         if (!levelFinished.LastLevel)
         {
             var nextLevel = levelFinished.NextLevel;
-            FindAndRemoveOldLevelEntry(nextLevel);
-            LevelRecords.Add(new LevelRecord()
-            {
-                levelName = nextLevel.LevelName,
-                maxGrowth =  0,
-                maxRootPowerCollected = 0, 
-                unlocked = true
-            });
+           CheckAndUpdateLevelEntry(nextLevel, 0, 0);
         }
         
         StoreLevelsToPlayerPrefs();
+    }
+
+    private void CheckAndUpdateLevelEntry(GameLevel level, int rootPower, int growth)
+    {
+        if (FindLevelEntry(level, out var record))
+        {
+            if (record.maxRootPowerCollected >= rootPower) return;
+            FindAndRemoveOldLevelEntry(level);
+        }
+        //No record was found
+        LevelRecords.Add(new LevelRecord()
+        {
+            levelName = level.LevelName,
+            maxGrowth = growth,
+            maxRootPowerCollected = rootPower,
+            unlocked = true
+        });
     }
 
     private void StoreLevelsToPlayerPrefs()
@@ -67,6 +71,21 @@ public class GameManager : Singleton<GameManager>
         {
             LevelRecords.RemoveAt(index);
         }
+    }
+
+    private bool FindLevelEntry(GameLevel level, out LevelRecord record)
+    {
+        var index = LevelRecords.FindIndex(record => record.levelName.Equals(level.LevelName));
+        try
+        {
+            record = levelRecords[index];
+        }
+        catch (Exception exception)
+        {
+            record = new LevelRecord();
+        }
+        
+        return index != -1;
     }
 
     public GameLevel GetLevelFromRecord(LevelRecord record)
