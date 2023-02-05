@@ -45,7 +45,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (FindLevelEntry(level, out var record))
         {
-            if (record.maxRootPowerCollected >= rootPower) return;
+            if (record.unlocked && record.maxRootPowerCollected >= rootPower) return;
             FindAndRemoveOldLevelEntry(level);
         }
         //No record was found
