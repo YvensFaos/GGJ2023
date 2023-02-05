@@ -37,6 +37,7 @@ namespace Game
             else
             {
                 Destroy(gameObject);
+                seed.LoseGrowth();
             }
             rootPoints.ForEach(rootPoint => rootPoint.DestroyRoot());
         }

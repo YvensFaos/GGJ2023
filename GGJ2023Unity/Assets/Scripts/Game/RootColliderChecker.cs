@@ -12,17 +12,23 @@ namespace Game
         [SerializeField] 
         private LayerMask rootPowerLayers;
 
+        public RootController Root => root;
+
         private void OnTriggerStay(Collider other)
         {
             var layer = (1 << other.gameObject.layer);
             if ((layer & damageLayers) != 0)
             {
-                  root.RootContactWithOther();
+                  Root.RootContactWithOther();
+                  if (other.TryGetComponent<RootColliderChecker>(out var otherRoot))
+                  {
+                      otherRoot.Root.RootContactWithOther();
+                  }
             }
             if ((layer & rootPowerLayers) != 0)
             {
                 if (!other.TryGetComponent<RootPower>(out var rootPower)) return;
-                root.CollectRootPower(rootPower);
+                Root.CollectRootPower(rootPower);
                 Destroy(other.gameObject);
             }
         }
