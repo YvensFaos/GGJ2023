@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67a47332756a426c9af2cf35de17d1f7, type: 3}
-  m_Name: Long Stretch
+  m_Name: Grass Patch
   m_EditorClassIdentifier: 
-  levelNumber: 2
-  levelName: Long Stretch
-  sceneName: Level 2 Long Stretch
-  lastLevel: 0
+  levelNumber: 3
+  levelName: Grass Patch
+  sceneName: Level 3 Grass Patch
+  lastLevel: 1
   firstLevel: 0
-  nextLevel: {fileID: 11400000, guid: fb6504d79ce8b4a63a37a65bf6f1bbf6, type: 2}
+  nextLevel: {fileID: 0}
   maxGrowth: 6
-  maxRootPower: 6
+  maxRootPower: 1
