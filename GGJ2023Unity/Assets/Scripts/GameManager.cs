@@ -15,9 +15,6 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         
-        //TODO remove all
-        PlayerPrefs.DeleteAll();
-        
         var jsonData = PlayerPrefs.GetString("Levels");
         if (jsonData is null or "")
         {
@@ -35,7 +32,7 @@ public class GameManager : Singleton<GameManager>
         LevelRecords.Add(new LevelRecord()
         {
             levelName = levelFinished.LevelName,
-            maxGrowth =  growth,
+            maxGrowth = growth,
             maxRootPowerCollected = rootPower, 
             unlocked = true
         });

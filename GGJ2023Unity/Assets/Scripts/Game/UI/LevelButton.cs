@@ -15,19 +15,32 @@ namespace Game.UI
         [SerializeField] private SceneLoader sceneLoader;
 
         private bool _unlocked;
+        private int _growthRecord;
+        private int _rootPowerRecord;
 
         public void Initialize(GameLevel level, LevelRecord levelRecord, SceneLoader loader)
         {
             gameLevel = level;
             levelNameText.text = level.GetCompleteLevelName;
-            var growthRecord = levelRecord.maxRootPowerCollected;
-            rootPowerText.text = $"{growthRecord}";
-            var rootPowerRecord = levelRecord.maxGrowth; 
-            growthText.text = $"{rootPowerRecord}";
+            
+            _rootPowerRecord = levelRecord.maxRootPowerCollected;
+            rootPowerText.text = $"{_rootPowerRecord}";
+            
+            _growthRecord = levelRecord.maxGrowth;
+            growthText.text = $"{_growthRecord}";
+            
             sceneLoader = loader;
             _unlocked = levelRecord.unlocked;
 
-            ornament.SetActive(level.IsMaxGrowth(growthRecord) && level.HasMaxRootPower(rootPowerRecord));
+            ornament.SetActive(level.IsMaxGrowth(_growthRecord) && level.HasMaxRootPower(_rootPowerRecord));
+        }
+
+        private void OnEnable()
+        {
+            if (gameLevel != null)
+            {
+                ornament.SetActive(gameLevel.IsMaxGrowth(_growthRecord) && gameLevel.HasMaxRootPower(_rootPowerRecord));    
+            }
         }
 
         public void LoadLevel()
