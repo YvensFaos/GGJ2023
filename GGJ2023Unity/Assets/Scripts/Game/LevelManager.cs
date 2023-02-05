@@ -21,6 +21,8 @@ namespace Game
         private SceneLoader sceneLoader;
 
         private int _completedSeeds;
+        private int _totalGrowthMade;
+        private int _totalRootPowerCollected;
         
         public void Start()
         {
@@ -31,14 +33,16 @@ namespace Game
             nextLevelCanvas.SetActive(false);
         }
 
-        public void NotifySeedGrown()
+        public void NotifySeedGrown(SeedController seed)
         {
             _completedSeeds++;
+            _totalGrowthMade += seed.GrowthMade;
+            _totalRootPowerCollected += seed.RootPowerCollected;
             if (_completedSeeds < seeds) return;
             finishLevelEvents?.Invoke();
             if (nextLevelCanvas == null) return;
             nextLevelCanvas.SetActive(true);
-            GameManager.Instance.UnlockLevel(level);
+            GameManager.Instance.UnlockLevel(level,_totalRootPowerCollected, _totalGrowthMade);
         }
 
         public void GoToNextLevel()

@@ -39,6 +39,8 @@ namespace Game
         private int _growthMade;
         
         public float GrowthStep { get; private set; }
+        public int RootPowerCollected => _rootPowerCollected;
+        public int GrowthMade => _growthMade;
 
         private void Awake()
         {
@@ -67,29 +69,29 @@ namespace Game
             });
             
             UpdateGrowthCounter();
-            counterRootPower.text = $"{_rootPowerCollected}";
+            counterRootPower.text = $"{RootPowerCollected}";
         }
 
         private void UpdateGrowthCounter()
         {
-            counterGrowth.text = $"{_growthMade}/{steps}";
+            counterGrowth.text = $"{GrowthMade}/{steps}";
         }
 
         public void Grow()
         {
             void ScaleTweenCall()
             {
-                if (_growthMade + 1 >= steps)
+                if (GrowthMade + 1 >= steps)
                 {
                     if (_fullyGrown) return;
-                    _growthMade++;
+                    _growthMade = GrowthMade + 1;
                     FullyGrown();
                 }
                 else
                 {
                     var scale = treePlacement.transform.localScale;
                     _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
-                    _growthMade++;
+                    _growthMade = GrowthMade + 1;
                     PlaySeedSound(regulaGrowthSound);
                 }
             }
@@ -115,15 +117,17 @@ namespace Game
         private void FullyGrown()
         {
             var scale = treePlacement.transform.localScale;
-            _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
-            _fullyGrown = true;
-            PlaySeedSound(fullyGrownSound);
-
-            var levelManager = FindObjectOfType<LevelManager>();
-            if (levelManager != null)
+            _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f).OnComplete(() =>
             {
-                levelManager.NotifySeedGrown();
-            }
+                _fullyGrown = true;
+                PlaySeedSound(fullyGrownSound);
+
+                var levelManager = FindObjectOfType<LevelManager>();
+                if (levelManager != null)
+                {
+                    levelManager.NotifySeedGrown(this);
+                }
+            });
         }
 
         public bool TryToUseRootPower()
@@ -139,7 +143,7 @@ namespace Game
             availableRootPower = Mathf.Clamp(availableRootPower + rootPower.Power, 0, numberRootSeedCanvas);
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
             _rootPowerCollected++;
-            counterRootPower.text = $"{_rootPowerCollected}";
+            counterRootPower.text = $"{RootPowerCollected}";
         }
 
         private void PlaySeedSound(AudioClip soundClip)

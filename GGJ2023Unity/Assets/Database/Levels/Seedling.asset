@@ -16,4 +16,7 @@ MonoBehaviour:
   levelName: Seedling
   sceneName: Level 1 Seedling
   lastLevel: 0
+  firstLevel: 1
   nextLevel: {fileID: 11400000, guid: 62eccf34cf08b4cb4b5ff2697d7ff077, type: 2}
+  maxGrowth: 4
+  maxRootPower: 3
