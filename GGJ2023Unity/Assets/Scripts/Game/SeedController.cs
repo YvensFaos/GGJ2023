@@ -132,7 +132,11 @@ namespace Game
 
         public bool TryToUseRootPower()
         {
-            if (!HasRootPower()) return false;
+            if (!HasRootPower())
+            {
+                rootSeedCanvas.transform.DOShakeScale(0.5f, 0.8f);
+                return false;
+            }
             availableRootPower--;
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
             return true;
