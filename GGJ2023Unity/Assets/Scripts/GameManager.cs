@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class GameManager : Singleton<GameManager>
@@ -106,6 +107,14 @@ public class GameManager : Singleton<GameManager>
             });
         });
         StoreLevelsToPlayerPrefs();
+    }
+
+    public void DeleteAllData()
+    {
+        PlayerPrefs.DeleteAll();
+        CreateLevelRecords();
+        //Hardcoded load main menu
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void LoadLevelRecords(string jsonData)
