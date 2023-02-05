@@ -51,11 +51,14 @@ public class GameManager : Singleton<GameManager>
         //No record was found
         LevelRecords.Add(new LevelRecord()
         {
+            levelNumber = level.LevelNumber,
             levelName = level.LevelName,
             maxGrowth = growth,
             maxRootPowerCollected = rootPower,
             unlocked = true
         });
+        
+        LevelRecords.Sort();
     }
 
     private void StoreLevelsToPlayerPrefs()
@@ -96,10 +99,12 @@ public class GameManager : Singleton<GameManager>
     
     private void CreateLevelRecords()
     {
+        levelRecords = new List<LevelRecord>();
         gameLevels.ForEach(level =>
         {
             LevelRecords.Add(new LevelRecord()
             {
+                levelNumber = level.LevelNumber,
                 levelName = level.LevelName,
                 maxGrowth =  0,
                 maxRootPowerCollected = 0, 
