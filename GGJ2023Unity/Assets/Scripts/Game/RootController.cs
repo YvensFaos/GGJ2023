@@ -32,6 +32,7 @@ namespace Game
             if (RootParent != null)
             {
                 RootParent.RootContactWithOther();
+                seed.LoseGrowth();
             }
             else
             {

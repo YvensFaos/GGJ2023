@@ -84,14 +84,14 @@ namespace Game
                 if (GrowthMade + 1 >= steps)
                 {
                     if (_fullyGrown) return;
-                    _growthMade = GrowthMade + 1;
+                    _growthMade = Mathf.Clamp(_growthMade + 1, 0, steps);
                     FullyGrown();
                 }
                 else
                 {
                     var scale = treePlacement.transform.localScale;
-                    _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f);
-                    _growthMade = GrowthMade + 1;
+                    _growthMade = Mathf.Clamp(_growthMade + 1, 0, steps);
+                    _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f);
                     PlaySeedSound(regulaGrowthSound);
                 }
             }
@@ -116,8 +116,7 @@ namespace Game
 
         private void FullyGrown()
         {
-            var scale = treePlacement.transform.localScale;
-            _scaleTween = treePlacement.transform.DOScale(scale + _growthVector, 0.2f).OnComplete(() =>
+            _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f).OnComplete(() =>
             {
                 _fullyGrown = true;
                 PlaySeedSound(fullyGrownSound);
@@ -152,6 +151,20 @@ namespace Game
             {
                 seedAudioSource.PlayOneShot(soundClip);
             }
+        }
+
+        public void LoseGrowth()
+        {
+            if (_scaleTween != null)
+            {
+                if (_scaleTween.IsActive())
+                {
+                    _scaleTween.Kill();
+                }
+            }
+            _growthMade = Mathf.Clamp(GrowthMade - 1, 0, steps);
+            _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f);
+            UpdateGrowthCounter();
         }
     }
 }
