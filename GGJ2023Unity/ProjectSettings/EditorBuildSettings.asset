@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2 Long Stretch.unity
     guid: fc1089f31fb4e42c6b0642a57563b6a4
+  - enabled: 1
+    path: Assets/Scenes/Level 3 Grass Patch.unity
+    guid: 1e22ca02bc8cb4372b8a965348239ff0
   m_configObjects: {}
