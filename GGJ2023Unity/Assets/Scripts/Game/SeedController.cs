@@ -92,26 +92,15 @@ namespace Game
                 {
                     var scale = treePlacement.transform.localScale;
                     _growthMade = Mathf.Clamp(_growthMade + 1, 0, steps);
-                    _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f);
+                    _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.6f).OnComplete(() =>
+                    {
+                        treePlacement.transform.DOShakeScale(0.3f, 0.1f, 2, 10);
+                    });
                     PlaySeedSound(regulaGrowthSound);
                 }
             }
             
-            if (_scaleTween != null)
-            {
-                if (_scaleTween.active)
-                {
-                    _scaleTween.OnComplete(ScaleTweenCall);
-                }
-                else
-                {
-                    ScaleTweenCall();
-                }
-            }
-            else
-            {
-                ScaleTweenCall();    
-            }
+            ScaleTweenCall();
             UpdateGrowthCounter();
         }
 
@@ -119,6 +108,8 @@ namespace Game
         {
             _scaleTween = treePlacement.transform.DOScale(_growthVector * _growthMade, 0.2f).OnComplete(() =>
             {
+                treePlacement.transform.DOShakeScale(1.5f, 0.1f, 1, 5).SetLoops(-1);
+                
                 _fullyGrown = true;
                 PlaySeedSound(fullyGrownSound);
 
@@ -150,6 +141,7 @@ namespace Game
             rootSeedCanvas.ResetRootPanelsToMatchRootPower(availableRootPower);
             _rootPowerCollected++;
             counterRootPower.text = $"{RootPowerCollected}";
+            rootSeedCanvas.transform.DOShakeScale(0.4f, 0.6f);
         }
 
         private void PlaySeedSound(AudioClip soundClip)
