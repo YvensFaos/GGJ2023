@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Game.UI
@@ -13,7 +14,8 @@ namespace Game.UI
 
         [SerializeField] private GameLevel gameLevel;
         [SerializeField] private SceneLoader sceneLoader;
-
+        [SerializeField] private Button selfButton;
+        
         private bool _unlocked;
         private int _growthRecord;
         private int _rootPowerRecord;
@@ -33,6 +35,7 @@ namespace Game.UI
             _unlocked = levelRecord.unlocked;
 
             ornament.SetActive(level.IsMaxGrowth(_growthRecord) && level.HasMaxRootPower(_rootPowerRecord));
+            selfButton.interactable = levelRecord.unlocked;
         }
 
         private void OnEnable()
