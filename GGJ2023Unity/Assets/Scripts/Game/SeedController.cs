@@ -41,6 +41,7 @@ namespace Game
         public float GrowthStep { get; private set; }
         public int RootPowerCollected => _rootPowerCollected;
         public int GrowthMade => _growthMade;
+        public bool IsFullyGrown => _fullyGrown;
 
         private void Awake()
         {
@@ -83,7 +84,7 @@ namespace Game
             {
                 if (GrowthMade + 1 >= steps)
                 {
-                    if (_fullyGrown) return;
+                    if (IsFullyGrown) return;
                     _growthMade = Mathf.Clamp(_growthMade + 1, 0, steps);
                     FullyGrown();
                 }

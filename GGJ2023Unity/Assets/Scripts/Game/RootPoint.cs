@@ -3,6 +3,7 @@ using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -15,6 +16,8 @@ namespace Game
         private RootController rootParent;
         [SerializeField]
         private RootController spawnRoot;
+        [SerializeField]
+        private Button rootPointButton;
 
         [Header("References")]
         [SerializeField]
@@ -56,6 +59,14 @@ namespace Game
             }
         }
 
+        private void Update()
+        {
+            if (seed.IsFullyGrown && rootPointButton != null && rootPointButton.interactable)
+            {
+                rootPointButton.interactable = false;
+            }
+        }
+
         public void DestroyRoot()
         {
             if (_markedForDeath) return;
@@ -76,6 +87,7 @@ namespace Game
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (seed.IsFullyGrown) return;
             if (_markedForDeath) return;
             if (spawnRoot != null) return;
             if (_hoverRoot == null)
